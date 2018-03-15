@@ -23,6 +23,9 @@
 		180BEC4D205792F200F72CC2 /* PNRefreshConst.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180BEC4C205792F200F72CC2 /* PNRefreshConst.swift */; };
 		180BEC4F2057A11000F72CC2 /* RefreshHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180BEC4E2057A11000F72CC2 /* RefreshHeader.swift */; };
 		180BEC512057A3D000F72CC2 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180BEC502057A3D000F72CC2 /* UIView+Extension.swift */; };
+		18B0C043205A43DA00935339 /* RefreshNormalHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B0C042205A43DA00935339 /* RefreshNormalHeader.swift */; };
+		18B0C045205A46F700935339 /* Refresh.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 18B0C044205A46F700935339 /* Refresh.bundle */; };
+		18B0C047205A472000935339 /* PNBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B0C046205A472000935339 /* PNBundle.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,6 +79,9 @@
 		180BEC4C205792F200F72CC2 /* PNRefreshConst.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PNRefreshConst.swift; sourceTree = "<group>"; };
 		180BEC4E2057A11000F72CC2 /* RefreshHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshHeader.swift; sourceTree = "<group>"; };
 		180BEC502057A3D000F72CC2 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
+		18B0C042205A43DA00935339 /* RefreshNormalHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshNormalHeader.swift; sourceTree = "<group>"; };
+		18B0C044205A46F700935339 /* Refresh.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Refresh.bundle; sourceTree = "<group>"; };
+		18B0C046205A472000935339 /* PNBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PNBundle.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,13 +134,16 @@
 		180BEC13205770D200F72CC2 /* PNRefresh */ = {
 			isa = PBXGroup;
 			children = (
+				18B0C044205A46F700935339 /* Refresh.bundle */,
 				180BEC14205770D200F72CC2 /* PNRefresh.h */,
 				180BEC2B205773EB00F72CC2 /* PNRefresh.swift */,
 				180BEC2D205775FC00F72CC2 /* ScrollView+PNRefresh.swift */,
 				180BEC502057A3D000F72CC2 /* UIView+Extension.swift */,
 				180BEC4A20577E7C00F72CC2 /* RefreshComponent.swift */,
 				180BEC4E2057A11000F72CC2 /* RefreshHeader.swift */,
+				18B0C042205A43DA00935339 /* RefreshNormalHeader.swift */,
 				180BEC4C205792F200F72CC2 /* PNRefreshConst.swift */,
+				18B0C046205A472000935339 /* PNBundle.swift */,
 				180BEC15205770D200F72CC2 /* Info.plist */,
 			);
 			path = PNRefresh;
@@ -281,6 +290,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18B0C045205A46F700935339 /* Refresh.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -309,10 +319,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				180BEC512057A3D000F72CC2 /* UIView+Extension.swift in Sources */,
+				18B0C047205A472000935339 /* PNBundle.swift in Sources */,
 				180BEC4B20577E7C00F72CC2 /* RefreshComponent.swift in Sources */,
 				180BEC2C205773EB00F72CC2 /* PNRefresh.swift in Sources */,
 				180BEC2E205775FC00F72CC2 /* ScrollView+PNRefresh.swift in Sources */,
 				180BEC4F2057A11000F72CC2 /* RefreshHeader.swift in Sources */,
+				18B0C043205A43DA00935339 /* RefreshNormalHeader.swift in Sources */,
 				180BEC4D205792F200F72CC2 /* PNRefreshConst.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

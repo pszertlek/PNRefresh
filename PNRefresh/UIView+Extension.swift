@@ -8,7 +8,7 @@
 
 import Foundation
 
-extension PNRefresh where Base: UIView {
+public extension PNRefresh where Base: UIView {
     var x: CGFloat {
         get {
             return base.frame.origin.x

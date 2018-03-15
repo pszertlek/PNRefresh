@@ -17,44 +17,6 @@ public class RefreshHeader: RefreshComponent {
             return UserDefaults.standard.value(forKey: self.lastUpdatedTimeKey) as? Date
         }
     }
-    override var state: RefreshState {
-        didSet {
-            guard state != oldValue else {
-                return
-            }
-            if state == RefreshState.idle {
-                if oldValue != .refreshing {
-                    return
-                }
-                UserDefaults.standard.set(Date(), forKey: self.lastUpdatedTimeKey)
-                UserDefaults.standard.synchronize()
-                UIView.animate(withDuration: RefreshSlowAnimationDuration, animations: { [weak self] in
-                    if let instance = self {
-                        instance.scrollView.pn.insetTop += instance.insetTDelta
-                        if instance.automaticallyChangeAlpha {
-                            instance.alpha = 0
-                        }
-                    }
-
-                }, completion: { [weak self](finished) in
-                    self?.pullPercent = 0
-                    self?.endRefreshCompletion?()
-                })
-            } else if state == .refreshing {
-                DispatchQueue.main.async {
-                    UIView.animate(withDuration: RefreshFastAnimationDuration, animations: { [unowned self] in
-                        let top = self.scrollViewOriginInset.top + self.pn.height
-                        self.scrollView.pn.insetTop = top
-                        var offset = self.scrollView.contentOffset
-                        offset.y = -top
-                        self.scrollView .setContentOffset(offset, animated: false)
-                        }, completion: { [unowned self](finished) in
-                            self.executeRefreshingCallback()
-                    })
-                }
-            }
-        }
-    }
     var ignoredScrollViewContentInsetTop: CGFloat = 0
     convenience init(refreshCompletion: RefreshingCompletionBlock) {
         self.init(frame: CGRect.zero)
@@ -65,6 +27,40 @@ public class RefreshHeader: RefreshComponent {
         super.prepare()
         self.lastUpdatedTimeKey = RefreshHeaderLastUpdatedTimeKey
         self.pn.height = RefreshHeaderHeight
+    }
+    
+    override func setState(_ oldValue: RefreshState) {
+        if state == RefreshState.idle {
+            if oldValue != .refreshing {
+                return
+            }
+            UserDefaults.standard.set(Date(), forKey: self.lastUpdatedTimeKey)
+            UserDefaults.standard.synchronize()
+            UIView.animate(withDuration: RefreshSlowAnimationDuration, animations: { [weak self] in
+                if let instance = self {
+                    instance.scrollView.pn.insetTop += instance.insetTDelta
+                    if instance.automaticallyChangeAlpha {
+                        instance.alpha = 0
+                    }
+                }
+                
+                }, completion: { [weak self](finished) in
+                    self?.pullPercent = 0
+                    self?.endRefreshCompletion?()
+            })
+        } else if state == .refreshing {
+            DispatchQueue.main.async {
+                UIView.animate(withDuration: RefreshFastAnimationDuration, animations: { [unowned self] in
+                    let top = self.scrollViewOriginInset.top + self.pn.height
+                    self.scrollView.pn.insetTop = top
+                    var offset = self.scrollView.contentOffset
+                    offset.y = -top
+                    self.scrollView .setContentOffset(offset, animated: false)
+                    }, completion: { [unowned self](finished) in
+                        self.executeRefreshingCallback()
+                })
+            }
+        }
     }
     
     override func placeSubviews() {

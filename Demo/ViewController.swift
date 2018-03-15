@@ -7,14 +7,16 @@
 //
 
 import UIKit
+import PNRefresh
+class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
 
-class ViewController: UIViewController {
-
+    @IBOutlet weak var tableView: UITableView!
+    var i = 5
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        
-        let scrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
+        let header = RefreshNormalHeader()
+        tableView.pn.header = header
         
         
     }
@@ -22,6 +24,16 @@ class ViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return i
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell =  tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        cell.textLabel?.text = "\(indexPath.row)"
+        return cell
     }
 
     

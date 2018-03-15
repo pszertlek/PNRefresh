@@ -9,6 +9,22 @@
 import Foundation
 
 extension PNRefresh where Base: ScrollView {
+    public var header: RefreshHeader? {
+        get {
+            return objc_getAssociatedObject(self.base, "header") as? RefreshHeader
+        }
+        set {
+            if header != newValue,
+                let newHeader = newValue {
+                header?.removeFromSuperview()
+                base.insertSubview(newHeader, at: 0)
+                objc_setAssociatedObject(base, "header", newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+            }
+        }
+    }
+}
+
+extension PNRefresh where Base: ScrollView {
     var inset: EdgeInsets {
         get {
             if #available(iOS 11, *) {

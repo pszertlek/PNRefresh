@@ -35,13 +35,7 @@ public class RefreshComponent: UIView {
             guard state != oldValue else {
                 return
             }
-            if Thread.isMainThread {
-                setNeedsLayout()
-            } else {
-                DispatchQueue.main.async { [weak self] in
-                    self?.setNeedsLayout()
-                }
-            }
+            self.setState(oldValue)
         }
     }
     var automaticallyChangeAlpha: Bool = false {
@@ -77,6 +71,16 @@ public class RefreshComponent: UIView {
     override public func layoutSubviews() {
         placeSubviews()
         super.layoutSubviews()
+    }
+    
+    func setState(_ oldValue: RefreshState) {
+        if Thread.isMainThread {
+            setNeedsLayout()
+        } else {
+            DispatchQueue.main.async { [weak self] in
+                self?.setNeedsLayout()
+            }
+        }
     }
     
     //MARK: KVO
